@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/rimgur"
+
+begin
+  RImgur::Application.new(ARGV).run
+rescue Errno::ENOENT => err
+  abort "rimgur: #{err.message}"
+rescue OptionParser::InvalidOption => err
+  abort "rimgur: #{err.message}\nusage: rimgur -c client_id -a album_id path"
+end
